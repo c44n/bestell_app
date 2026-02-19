@@ -25,6 +25,11 @@ body {
     margin: 0;
 }
 
+section {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .bg-primary {
     background-color: var(--primary-color);
 }
