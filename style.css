@@ -25,18 +25,36 @@ body {
     margin: 0;
 }
 
-section {
-    padding-left: 15px;
-    padding-right: 15px;
-}
+section {}
 
 .bg-primary {
     background-color: var(--primary-color);
 }
 
+.text-primary {
+    color: var(--primary-color);
+}
+
+.text-gray {
+    color: var(--gray);
+}
+
+.text-bold {
+    font-weight: 700;
+}
+
 .container_xl {
     max-width: 1440px;
     margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.container {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding-left: 15px;
+    padding-right: 15px;
 }
 
 .header_wrapper {
@@ -54,4 +72,56 @@ section {
 
 .menu_icon {
     width: 40px;
+}
+
+/* Restrautn Cover Styling */
+
+.hero__cover {
+    background: url(./assets/images/hero.webp);
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 500px;
+}
+
+.restaurant_info__logo_wrapper {
+    display: flex;
+    justify-content: center;
+    height: 50px;
+    margin-bottom: 30px;
+}
+
+.restaurant_logo {
+    width: 200px;
+    height: 200px;
+    margin-top: -130px;
+}
+
+.restaurant_info__name_desc_wrapper {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.restaurant_name_wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 24px;
+}
+
+.restaurant_review_wrapper {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    background: #ffd2b6;
+    height: 26px;
+    border-radius: 3px;
+    padding-left: 6px;
+    padding-right: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+.review_sum {
+    font-size: clamp(0.75rem, 0.65rem + 0.5vw, 0.875rem);
 }
