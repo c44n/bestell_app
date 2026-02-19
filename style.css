@@ -1,8 +1,13 @@
 :root {
-    --primary-color: #124658;
+    --primary-color: #E76C1F;
     --secondary-color: #06171E;
     --white: #ffff;
     --gray: #627B84;
+}
+
+@font-face {
+    font-family: 'Palanquin';
+    src: url(./assets/fonts/Palanquin-Regular.ttf) format('truetype');
 }
 
 h1,
@@ -15,7 +20,33 @@ h6 {
 }
 
 body {
-    background-color: var(--secondary-color);
-    font-family: Arial, Helvetica, sans-serif;
+    background-color: var(--white);
+    font-family: 'Palanquin', Helvetica, sans-serif;
     margin: 0;
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.container_xl {
+    max-width: 1440px;
+    margin: 0 auto;
+}
+
+.header_wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 25px;
+    padding-bottom: 25px;
+}
+
+.logo {
+    width: 70px;
+    height: auto;
+}
+
+.menu_icon {
+    width: 40px;
 }
