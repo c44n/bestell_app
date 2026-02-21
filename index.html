@@ -8,6 +8,7 @@
 
     <link rel="shortcut icon" href="./images/" type="image/x-icon">
 
+    <link rel="stylesheet" href="./styles/meal.css">
     <link rel="stylesheet" href="./style.css">
 </head>
 
@@ -26,22 +27,55 @@
     <main>
         <section class="hero">
             <div class="hero__cover"></div>
-            <div class="hero__restaurant_info">
-                <div class="restaurant_info__logo_wrapper">
-                    <img src="./assets/images/burger_pb.png" alt="Restaurant Logo Image" class="restaurant_logo">
-                </div>
-                <div class="restaurant_info__name_desc_wrapper">
-                    <div class="restaurant_name_wrapper">
-                        <img src="./assets/images/BurgerHouse.png" alt="Restaurant Logo Text">
-                        <div class="restaurant_review_wrapper">
-                            <img src="./assets/icons/star.svg" width="20px" alt="Review Star Image">
-                            <h4>4,1</h4>
-                            <span class="review_sum">(317)</span>
-                        </div>
+            <div class="container_xl">
+                <div class="hero__restaurant_info">
+                    <div class="restaurant_info__logo_wrapper">
+                        <img src="./assets/images/burger_pb.png" alt="Restaurant Logo Image" class="restaurant_logo">
                     </div>
-                    <h3>The best Burgers, Pizza, and Greens, all in one great place.</h3>
+                    <div class="restaurant_info__name_desc_wrapper">
+                        <div class="restaurant_name_wrapper">
+                            <img src="./assets/images/BurgerHouse.png" alt="Restaurant Logo Text">
+                            <div class="restaurant_review_wrapper">
+                                <img src="./assets/icons/star.svg" width="20px" alt="Review Star Image">
+                                <h4>4,1</h4>
+                                <span class="review_sum">(317)</span>
+                            </div>
+                        </div>
+                        <h3>The best Burgers, Pizza, and Greens, all in one great place.</h3>
+                    </div>
+                </div>
+        </section>
+
+        <section class="meal">
+            <div class="container_title">
+                <div class="meal__title_wrapper bg-primary">
+                    <img src="./assets/icons/burger_icon.svg" alt="Burger Icon">
+                    <h2>Burger & Sandwiches</h2>
                 </div>
             </div>
+
+            <div class="container_xl">
+                
+                <div class="meal_card_wrapper">
+                    <div class="meal_card">
+                        <img src="./assets/images/bigchicken_burger.jpg" alt="Burger">
+
+                        <div class="meal_info_wrapper">
+                            <div class="meal_title_desc_wrapper">
+                                <h3>Beef Red Burger</h3>
+                                <p>Mixed green salad, Tomatoes, Edamame, Mushrooms</p>
+                            </div>
+
+                            <div class="meal_price_basket_wrapper">
+                                <h3>16,90 €</h3>
+                                <button class="add-basket-btn">Add to basket</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+
         </section>
 
     </main>

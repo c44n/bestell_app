@@ -1,0 +1,46 @@
+.meal__title_wrapper {
+    display: flex;
+    align-items: center;
+    color: #ffff;
+    height: 65px;
+}
+
+.meal_card_wrapper {
+    margin-top: 30px;
+    margin-bottom: 50px;
+    width: 80%;
+}
+
+.meal_card {
+    display: flex;
+    background-color: #FDEADC;
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.meal_info_wrapper {
+    display: flex;
+}
+
+.meal_title_desc_wrapper {
+    line-height: 0.7;
+    padding-left: 25px;
+    padding-top: 5px;
+}
+
+.meal_price_basket_wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.add-basket-btn {
+    background: #cd2020;
+    padding: 10px 15px 10px 15px;
+    border: 2px solid #ffffff;
+    border-radius: 6px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 0 5px #b5b5b5;
+}

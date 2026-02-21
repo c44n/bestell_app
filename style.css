@@ -25,8 +25,6 @@ body {
     margin: 0;
 }
 
-section {}
-
 .bg-primary {
     background-color: var(--primary-color);
 }
@@ -50,11 +48,9 @@ section {}
     padding-right: 15px;
 }
 
-.container {
-    max-width: 1300px;
+.container_title {
+    max-width: 1440px;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .header_wrapper {
@@ -74,7 +70,11 @@ section {}
     width: 40px;
 }
 
-/* Restrautn Cover Styling */
+/* Restaurant Cover Styling */
+
+section.hero {
+    padding-bottom: 70px;
+}
 
 .hero__cover {
     background: url(./assets/images/hero.webp);
