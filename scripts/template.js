@@ -1,9 +1,11 @@
 function allMealsTemplate(meals, id) {
     let mealList = "";
-    
+
     for (i = 0; i < meals.meals.length; i++) {
         let meal = meals.meals[i];
-        mealList += mealContentTemplate(meal);
+        let meal_category_id = id;
+        let meal_id = i;
+        mealList += mealContentTemplate(meal, meal_category_id, meal_id);
     }
 
     return `
@@ -27,7 +29,7 @@ function mealTitleTemplate(meals) {
     `;
 }
 
-function mealContentTemplate(meals) {
+function mealContentTemplate(meals, meal_category_id, meal_id) {
     return `
         <div class="meal_card_wrapper">
             <div class="meal_card">
@@ -43,10 +45,30 @@ function mealContentTemplate(meals) {
 
                     <div class="meal_price_basket_wrapper">
                         <h3>${meals.price} €</h3>
-                        <button class="add-basket-btn">Add to basket</button>
+                        <button class="add-basket-btn" id="add_basket_btn" onclick="addMealToBasket(${meal_category_id},${meal_id})">Add to basket</button>
                     </div>
                 </div>
             </div>
         </div>
     `;
+}
+function mealToBasketTemplate(mealInfo, meal_id) {
+    return `
+        <div class="mealList_card" data-meal_id="${meal_id}">
+            <h4><span id="meal_count_${meal_id}">1</span> ${mealInfo.name}</h4>
+
+            <div class="mealList_card__info_wrapper">
+
+                <div class="mealList_card__icon-list">
+                    <img src="./assets/icons/delete.svg" alt="Trash Icon">
+                    <h5>1 <span class="addMeal">+</span></h5>
+                </div>
+
+                <div class="mealList_card__meal_price">
+                    ${mealInfo.price} €
+                </div>
+            </div>
+        </div>
+    `;
+
 }
