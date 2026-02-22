@@ -1,13 +1,17 @@
+.meal__title {
+    width: 100%;
+}
+
 .meal__title_wrapper {
     display: flex;
     align-items: center;
     color: #ffff;
     height: 65px;
+    column-gap: 30px;
 }
 
 .meal_card_wrapper {
-    margin-top: 30px;
-    margin-bottom: 50px;
+    margin-top: 15px;
     width: 80%;
 }
 
@@ -18,17 +22,23 @@
     border-radius: 12px;
 }
 
+.meal_card__image_wrapper {
+    width: 30%;
+}
+
 .meal_info_wrapper {
+    width: 70%;
     display: flex;
+    justify-content: space-between;
 }
 
 .meal_title_desc_wrapper {
-    line-height: 0.7;
+    line-height: 1.2;
     padding-left: 25px;
-    padding-top: 5px;
 }
 
 .meal_price_basket_wrapper {
+    min-width: 130px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -36,11 +46,17 @@
 }
 
 .add-basket-btn {
-    background: #cd2020;
+    background: #ef4444;
     padding: 10px 15px 10px 15px;
-    border: 2px solid #ffffff;
+    border: 0px solid #ffffff;
     border-radius: 6px;
     color: white;
     font-weight: 500;
     box-shadow: 0 0 5px #b5b5b5;
+    transition: .2s ease-in;
+    cursor:pointer;
+}
+
+.add-basket-btn:hover {
+    background: #c01e1e;
 }

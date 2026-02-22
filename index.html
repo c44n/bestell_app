@@ -8,6 +8,7 @@
 
     <link rel="shortcut icon" href="./images/" type="image/x-icon">
 
+    <link rel="stylesheet" href="./styles/calculation.css">
     <link rel="stylesheet" href="./styles/meal.css">
     <link rel="stylesheet" href="./style.css">
 
@@ -16,7 +17,7 @@
     <script src="./script.js"></script>
 </head>
 
-<body>
+<body onload="init()">
     <header>
         <section class="bg-primary">
             <div class="container_xl">
@@ -50,36 +51,27 @@
                 </div>
         </section>
 
-        <section class="meal">
-            <div class="container_title">
-                <div class="meal__title_wrapper bg-primary">
-                    <img src="./assets/icons/burger_icon.svg" alt="Burger Icon">
-                    <h2>Burger & Sandwiches</h2>
-                </div>
-            </div>
+        <section class="meal" id="allMeals">
+            <div class="basket_wrapper">
+                <div class="basket__title">
+                    <div class="basket__list">
 
-            <div class="container_xl">
-                
-                <div class="meal_card_wrapper">
-                    <div class="meal_card">
-                        <img src="./assets/images/bigchicken_burger.jpg" alt="Burger">
-
-                        <div class="meal_info_wrapper">
-                            <div class="meal_title_desc_wrapper">
-                                <h3>Beef Red Burger</h3>
-                                <p>Mixed green salad, Tomatoes, Edamame, Mushrooms</p>
-                            </div>
-
-                            <div class="meal_price_basket_wrapper">
-                                <h3>16,90 €</h3>
-                                <button class="add-basket-btn">Add to basket</button>
-                            </div>
+                    </div>
+                    
+                    <div class="basket__calculate">
+                        <div id="subtotal" class="calc_wrapper">
+                            <p>Subtotal</p><p id="subtotal_num">0,00</p>€
+                        </div>
+                        <div id="deliver_fee" class="calc_wrapper">
+                            <p>Delivery Fee</p><p id="delivery_num">0,00</p>€
+                        </div>
+                        <hr>
+                        <div id="deliver_fee" class="calc_wrapper">
+                            <p><b>Total</b></p><p id="total_num">0,00</p>€
                         </div>
                     </div>
                 </div>
-
             </div>
-
         </section>
 
     </main>
