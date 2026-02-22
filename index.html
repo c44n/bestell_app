@@ -55,19 +55,37 @@
             <div class="basket_wrapper">
                 <div class="basket__title">
                     <div class="basket__list">
-
+                        <h3>Your Basket</h3>
                     </div>
-                    
+
+                    <div class="basket__mealList">
+                        <div class="mealList_card">
+                            <h4>1x Veggie Burger</h4>
+
+                            <div class="mealList_card__info_wrapper">
+
+                                <div class="mealList_card__icon-list">
+                                    <img src="./assets/icons/delete.svg" alt="Trash Icon">
+                                    <h5>1 <span class="addMeal">+</span></h5>
+                                </div>
+
+                                <div class="mealList_card__meal_price">
+                                    16,90 €
+                                </div>
+                            </div>
+                        </div>
+                    </div>    
+                                    
                     <div class="basket__calculate">
                         <div id="subtotal" class="calc_wrapper">
-                            <p>Subtotal</p><p id="subtotal_num">0,00</p>€
+                            <p>Subtotal</p><span class="num_wrapper"><p id="subtotal_num">0,00</p>€</span>
                         </div>
                         <div id="deliver_fee" class="calc_wrapper">
-                            <p>Delivery Fee</p><p id="delivery_num">0,00</p>€
+                            <p>Delivery Fee</p><span class="num_wrapper"><p id="delivery_num">0,00</p>€</span>
                         </div>
-                        <hr>
+                        <hr class="hr">
                         <div id="deliver_fee" class="calc_wrapper">
-                            <p><b>Total</b></p><p id="total_num">0,00</p>€
+                            <p><b>Total</b></p><span class="num_wrapper"><p id="total_num">0,00</p>€</span>
                         </div>
                     </div>
                 </div>

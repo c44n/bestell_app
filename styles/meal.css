@@ -12,7 +12,7 @@
 
 .meal_card_wrapper {
     margin-top: 15px;
-    width: 80%;
+    max-width: 700px;
 }
 
 .meal_card {
