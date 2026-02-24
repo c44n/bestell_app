@@ -45,14 +45,14 @@ function mealContentTemplate(meals, meal_category_id, meal_id) {
 
                     <div class="meal_price_basket_wrapper">
                         <h3>${meals.price} €</h3>
-                        <button class="add-basket-btn" id="add_basket_btn" onclick="addMealToBasket(${meal_category_id},${meal_id})">Add to basket</button>
+                        <button class="add-basket-btn" id="add_basket_btn" onclick="calculateStart(${meal_category_id},${meal_id}, 'add')">Add to basket</button>
                     </div>
                 </div>
             </div>
         </div>
     `;
 }
-function mealToBasketTemplate(mealInfo, meal_id) {
+function mealToBasketTemplate(mealInfo, meal_id, meal_category_id) {
     return `
         <div class="mealList_card" data-meal_id="${meal_id}">
             <h4><span id="meal_count_${meal_id}">1</span> ${mealInfo.name}</h4>
@@ -60,12 +60,14 @@ function mealToBasketTemplate(mealInfo, meal_id) {
             <div class="mealList_card__info_wrapper">
 
                 <div class="mealList_card__icon-list">
-                    <img src="./assets/icons/delete.svg" alt="Trash Icon">
+                    <img src="./assets/icons/delete.svg" alt="Trash Icon" onclick="calculateStart(${meal_category_id},${meal_id}, 'sub')">
                     <h5>1 <span class="addMeal">+</span></h5>
                 </div>
 
                 <div class="mealList_card__meal_price">
-                    ${mealInfo.price} €
+                    <span id="meal_price_${meal_id}">${mealInfo.price}</span>
+                    <span id="">€</span>
+                    
                 </div>
             </div>
         </div>
