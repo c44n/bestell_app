@@ -47,7 +47,6 @@ function deleteMealFromBasket(mealObj) {
 }
 
 function calculateStart(meal_category_id, meal_id, calcType) {
-    // Warenkorb wrapper
     let basketWrapperRef = document.getElementById('basket__mealList');
     let basket_activeRef = document.getElementById('basket_active');
     let basket_offRef = document.getElementById('basket_off');
@@ -63,13 +62,12 @@ function calculateStart(meal_category_id, meal_id, calcType) {
     let subTotalElementRef = document.getElementById('subtotal_num');
     let totalNumElementRef = document.getElementById('total_num');
     // Subtotal-Nummer-Element mit Summe holen
-    let subTotalStr = subTotalElementRef.innerHTML;
-    let subTotal = parseFloat(subTotalStr);
+    let subTotal = parseFloat(subTotalElementRef.innerHTML);
     // Für Sub 
     let mealBasketCountRef = document.getElementById('meal_count_' + meal_category_id + meal_id);
     let mealDataRef = basketWrapperRef.querySelector('[data-meal_id="' + meal_category_id + meal_id + '"]');
 
-    let addArr = { deliverPrice, basketWrapperRef, mealBasketCountRef, mealInfo, mealPrice, subTotalElementRef, subTotalStr, subTotal, meal_id, meal_category_id };
+    let addArr = { deliverPrice, basketWrapperRef, mealBasketCountRef, mealInfo, mealPrice, subTotalElementRef, subTotal, meal_id, meal_category_id };
     let subArr = { deliverPrice, mealDataRef, mealBasketCountRef, subTotalElementRef, subTotal, mealPrice }
 
 

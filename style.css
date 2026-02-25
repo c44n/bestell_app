@@ -31,9 +31,13 @@ body {
     margin: 0;
 }
 
+main {
+    min-height: calc(100vh - 5em);
+}
+
 dialog {
     transform: scale(0.95);
-    transition:  0.3s ease-in;
+    transition: 0.3s ease-in;
 }
 
 dialog[open] {
@@ -161,3 +165,29 @@ section.hero {
 .display-none {
     display: none;
 }
+
+
+
+
+.footer {
+    margin-top: 50px;
+    height: 110px;
+    overflow: hidden; /* damit wrapper mit padding nicht überragt  */
+}
+
+.footer__wrapper {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    column-gap: 70px;
+    color: var(--white);
+    padding-top: 10px;
+}
+
+.copyright_wrapper {
+    display: flex;
+    align-items: center;
+    column-gap: 6px;
+}
+
