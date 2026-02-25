@@ -117,12 +117,12 @@ function calculateStart(meal_category_id, meal_id, calcType) {
 }
 
 let closeTimer;
-
+let basketWrapperRef = document.getElementById('basket_wrapper');
 
 function openDialog() {
     dialogRef.showModal();
+    basketWrapperRef.classList.add('display-none');
 
-    
     closeTimer = setTimeout(() => {
         dialogRef.close();
     }, 15000);
