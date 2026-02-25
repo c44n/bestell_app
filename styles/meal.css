@@ -17,7 +17,7 @@
 
 .meal_card {
     display: flex;
-    background-color: #FDEADC;
+    background-color: var(--primary-light-color);
     padding: 20px;
     border-radius: 12px;
 }
@@ -37,6 +37,88 @@
     padding-left: 25px;
 }
 
+.addOneBtn {
+    padding: 2px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: .2s ease-in;
+    border-radius: 8px;
+}
+
+.addOneBtn:hover {
+    background-color: #bdb2a4;
+}
+
+.addOneBtn:focus {
+    background-color: #beb5a8;
+}
+
+.trash-icon {
+    cursor: pointer;
+    transition: .2s ease-in;
+    border-radius: 8px;
+}
+
+.trash-icon-right {
+    position: absolute;
+    right: 9px;
+    top: 17px;
+}
+
+.trash-icon:hover {
+    background-color: #bdb2a4;
+}
+
+.basket_off {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    align-content: flex-start;
+    margin-top: 30px;
+}
+
+.basket_off>img {
+    margin-top: 50px;
+}
+
+.basket__title {
+    text-align: center;
+}
+
+.basket_off>h4 {
+    font-weight: 400;
+    text-align: center;
+    line-height: 1.3;
+}
+
+#basket__mealList {
+    max-height: 292px;
+    overflow-y: scroll;
+    padding-right: 8px;
+    padding-top: 20px;
+}
+
+.basket_wrapper {
+    position: sticky;
+    top: 0;
+    float: right;
+    height: 570px;
+    width: 300px;
+    background: #363534;
+    border-top-left-radius: 16px;
+    border-bottom-left-radius: 16px;
+    color: var(--white);
+    padding: 36px;
+    z-index: 9;
+}
+
 .meal_price_basket_wrapper {
     min-width: 130px;
     display: flex;
@@ -54,9 +136,80 @@
     font-weight: 500;
     box-shadow: 0 0 5px #b5b5b5;
     transition: .2s ease-in;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .add-basket-btn:hover {
     background: #c01e1e;
+}
+
+.buy_btn_wrapper {
+    margin-top: 30px;
+}
+
+.buy_btn {
+    background: var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--white);
+    font-family: 'Palanquin';
+}
+
+.deliver_dialog {
+    width: 400px;
+    background: #363534;
+    border: 1px solid black;
+    border-radius: 20px;
+}
+
+#closeBtn {
+    cursor: pointer;
+}
+
+.deliver_dialog__header {
+    float: right;
+}
+
+.deliver_dialog_content_wrapper {
+    display: grid;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    justify-items: center;
+    color: var(--white);
+    padding: 40px;
+    text-align: center;
+    line-height: 1.3;
+}
+
+.deliver_dialog_content_wrapper > h2 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.deliver_dialog::backdrop {
+    background-color: #000000ba;
+    backdrop-filter: blur(10px);
+}
+
+
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: var(--primary-light-color);
+    border-radius: 6px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #bdb2a4;
 }

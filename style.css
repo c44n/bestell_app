@@ -1,6 +1,7 @@
 :root {
     --primary-color: #E76C1F;
     --secondary-color: #06171E;
+    --primary-light-color: #FDEADC;
     --white: #ffff;
     --gray: #627B84;
 }
@@ -30,6 +31,25 @@ body {
     margin: 0;
 }
 
+dialog {
+    transform: scale(0.95);
+    transition:  0.3s ease-in;
+}
+
+dialog[open] {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Neu gelernt: definiert Startzustand vor dem einblenden */
+@starting-style {
+    dialog[open] {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+}
+
+
 .bg-primary {
     background-color: var(--primary-color);
 }
@@ -55,9 +75,8 @@ body {
 
 .container_xl {
     max-width: 1440px;
+    position: relative;
     margin: 0 auto;
-    padding-left: 15px;
-    padding-right: 15px;
 }
 
 .container_title {
@@ -137,4 +156,8 @@ section.hero {
 
 .review_sum {
     font-size: clamp(0.75rem, 0.65rem + 0.5vw, 0.875rem);
+}
+
+.display-none {
+    display: none;
 }
