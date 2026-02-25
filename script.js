@@ -131,3 +131,9 @@ function openDialog() {
 function closeDialog() {
     dialogRef.close();
 }
+
+let closeBasketMobileRef = document.getElementById('closeBasketMobileBtn');
+
+function closeBasketMobile(){
+    basketWrapperRef.classList.add('display-none');
+}

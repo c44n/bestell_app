@@ -185,7 +185,7 @@
     line-height: 1.3;
 }
 
-.deliver_dialog_content_wrapper > h2 {
+.deliver_dialog_content_wrapper>h2 {
     margin-top: 20px;
     margin-bottom: 10px;
 }
@@ -212,4 +212,143 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #bdb2a4;
+}
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 1080px) {
+
+    .menu_icon {
+        display: none;
+    }
+
+    .header_wrapper {
+        padding-right: 20px;
+        padding-left: 20px;
+    }
+
+    .hero__cover {
+        border-radius: 20px;
+        width: 93%;
+        margin: 16px auto;
+    }
+
+    .restaurant_logo {
+        width: 150px;
+        height: 150px;
+        margin-top: -85px;
+    }
+
+    .restaurant_name_wrapper {
+        flex-direction: column-reverse;
+        gap: 24px;
+
+    }
+
+    .restaurant_info__name_desc_wrapper {
+        margin-top: 50px;
+    }
+
+    .restaurant_info__name_desc_wrapper>h3 {
+        text-align: center;
+    }
+
+    .container_xl {
+        padding: 0 10px 0 10px;
+    }
+
+
+
+    .meal__title_wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 65px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+
+    .meal__title_wrapper>img {
+        width: 70px;
+    }
+
+    .meal_card_wrapper {
+        max-width: 400px;
+    }
+
+    .meal_card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .meal_card__image_wrapper {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .meal_info_wrapper {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .meal_card__image_wrapper>img {
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .meal_title_desc_wrapper {
+        padding-left: 0;
+    }
+
+    .basket__title {
+        margin-top: 30px;
+    }
+
+    .basket__title>h3 {
+        font-size: 2rem;
+    }
+
+    .meal_price_basket_wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .basket_wrapper {
+        position: absolute;
+        top: 0;
+        float: right;
+        height: 100vh;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 0;
+    }
+
+    #basket_active {
+        padding: 20px;
+    }
+
+    .close_basket_mobile {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+    }
+
+    .footer__wrapper {
+        flex-direction: column-reverse;
+        padding: 0;
+    }
 }

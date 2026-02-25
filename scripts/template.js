@@ -33,7 +33,7 @@ function mealContentTemplate(meals, meal_category_id, meal_id) {
     return `
         <div class="meal_card_wrapper">
             <div class="meal_card">
-                <div class="meal_card__image_wrapper">
+                <div class="meal_card__image_wrapper" id="meal_card__image_wrapper">
                     <img src="${meals.image}" alt="Burger">
                 </div>
 
