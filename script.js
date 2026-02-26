@@ -49,13 +49,14 @@ function deleteMealFromBasket(mealObj) {
     return newObj;
 }
 
+let mobileBasketIconRef = document.getElementById('mobile_cart_icon');
+
 function calculateStart(meal_category_id, meal_id, calcType) {
     let basketWrapperRef = document.getElementById('basket__mealList');
     let basket_activeRef = document.getElementById('basket_active');
     let basket_offRef = document.getElementById('basket_off');
     let trashIconRef = document.getElementById('trash_icon');
     let addMealBtn = document.getElementById('addOneMealBtn');
-    let mobileBasketIconRef = document.getElementById('mobile_cart_icon');
     let mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
 
     // Essen Infos holen
@@ -131,12 +132,17 @@ let closeTimer;
 let basketWrapperRef = document.getElementById('basket_wrapper');
 
 function openDialog() {
+    let mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
     dialogRef.showModal();
     basketWrapperRef.classList.add('display-none');
+
+    mobileBasketIconCounter.innerHTML = 1;
+    mobileBasketIconCounter.classList.add('display-none');
 
     closeTimer = setTimeout(() => {
         dialogRef.close();
     }, 15000);
+
 }
 
 function closeDialog() {
@@ -145,10 +151,10 @@ function closeDialog() {
 
 let closeBasketMobileRef = document.getElementById('closeBasketMobileBtn');
 
-function closeBasketMobile(){
+function closeBasketMobile() {
     basketWrapperRef.classList.add('display-none-mobile');
 }
 
-function openBasketMobile(){
+function openBasketMobile() {
     basketWrapperRef.classList.remove('display-none-mobile');
 }
