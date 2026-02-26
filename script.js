@@ -4,6 +4,7 @@ let newCount;
 let finalPrice;
 let deliverPrice = parseFloat(4.99);
 let deliverFinalPrice;
+let basketCounter = 1;
 
 let buyBtnNumRef = document.getElementById('buy_btn_num');
 const dialogRef = document.getElementById('delivereDialog');
@@ -30,8 +31,9 @@ function addMealToBasket(mealObj) {
         //  Essenspreis mit aktueller Essen-Gesamtsumme addieren + Aktualisierten Preis im Element einfügen
         finalPrice = (mealObj["mealPrice"] + mealObj["subTotal"]).toFixed(2);
         deliverFinalPrice = (mealObj["mealPrice"] + mealObj["subTotal"] + mealObj["deliverPrice"]).toFixed(2);
+        basketCounter++;
     }
-    let newObj = { newCount, finalPrice, deliverFinalPrice }
+    let newObj = { newCount, finalPrice, deliverFinalPrice, basketCounter }
     return newObj;
 }
 
@@ -42,7 +44,8 @@ function deleteMealFromBasket(mealObj) {
     // Kosten anpassen
     finalPrice = parseFloat(mealObj["subTotal"] - mealObj["mealPrice"]).toFixed(2); //toFixed(2), um Zahl mit zwei Nachkommastellen zu formatieren
     deliverFinalPrice = (mealObj["subTotal"] - mealObj["mealPrice"] + mealObj["deliverPrice"]).toFixed(2);
-    newObj = { newCount, mealBasketCount, finalPrice, deliverFinalPrice }
+    basketCounter--;
+    newObj = { newCount, mealBasketCount, finalPrice, deliverFinalPrice, basketCounter }
     return newObj;
 }
 
@@ -52,6 +55,8 @@ function calculateStart(meal_category_id, meal_id, calcType) {
     let basket_offRef = document.getElementById('basket_off');
     let trashIconRef = document.getElementById('trash_icon');
     let addMealBtn = document.getElementById('addOneMealBtn');
+    let mobileBasketIconRef = document.getElementById('mobile_cart_icon');
+    let mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
 
     // Essen Infos holen
     let mealInfo = meals[meal_category_id].meals[meal_id];
@@ -79,6 +84,7 @@ function calculateStart(meal_category_id, meal_id, calcType) {
             subTotalElementRef.innerHTML = newObj.finalPrice;
             totalNumElementRef.innerHTML = newObj.deliverFinalPrice;
             buyBtnNumRef.innerHTML = newObj.deliverFinalPrice;
+            mobileBasketIconCounter.innerHTML = newObj.basketCounter;
 
             trashIconRef.classList.add('trash-icon-right');
             addMealBtn.innerHTML = "- 1 +";
@@ -90,10 +96,12 @@ function calculateStart(meal_category_id, meal_id, calcType) {
             subTotalElementRef.innerHTML = (subTotal + mealPrice).toFixed(2);
             totalNumElementRef.innerHTML = (subTotal + mealPrice + deliverPrice).toFixed(2);
             buyBtnNumRef.innerHTML = (subTotal + mealPrice + deliverPrice).toFixed(2);
+            mobileBasketIconCounter.innerHTML = basketCounter;
 
             basket_activeRef.classList.remove('display-none');
             basket_offRef.classList.add('display-none');
-
+            mobileBasketIconRef.style.color = 'var(--primary-color)';
+            mobileBasketIconCounter.classList.remove('display-none');
         }
     }
 
@@ -104,9 +112,12 @@ function calculateStart(meal_category_id, meal_id, calcType) {
             subTotalElementRef.innerHTML = newObj.finalPrice;
             totalNumElementRef.innerHTML = newObj.deliverFinalPrice;
             buyBtnNumRef.innerHTML = newObj.deliverFinalPrice;
+            mobileBasketIconCounter.innerHTML = newObj.basketCounter;
         } else {
             mealDataRef.remove();
             subTotalElementRef.innerHTML = newObj.finalPrice;
+            mobileBasketIconCounter.innerHTML = 1;
+            mobileBasketIconCounter.classList.add('display-none');
 
             if (subTotalElementRef.innerHTML == "0.00") {
                 basket_activeRef.classList.add('display-none');
@@ -135,5 +146,9 @@ function closeDialog() {
 let closeBasketMobileRef = document.getElementById('closeBasketMobileBtn');
 
 function closeBasketMobile(){
-    basketWrapperRef.classList.add('display-none');
+    basketWrapperRef.classList.add('display-none-mobile');
+}
+
+function openBasketMobile(){
+    basketWrapperRef.classList.remove('display-none-mobile');
 }

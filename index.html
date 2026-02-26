@@ -8,9 +8,9 @@
 
     <link rel="shortcut icon" href="./images/" type="image/x-icon">
 
+    <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/calculation.css">
     <link rel="stylesheet" href="./styles/meal.css">
-    <link rel="stylesheet" href="./style.css">
 
     <script src="./scripts/db.js"></script>
     <script src="./scripts/template.js"></script>
@@ -52,7 +52,7 @@
         </section>
 
         <section class="meal">
-            <div class="basket_wrapper" id="basket_wrapper">
+            <div class="basket_wrapper display-none-mobile" id="basket_wrapper">
                 <img class="close_basket_mobile" id="closeBasketMobileBtn" tabindex="0" src="./assets/icons/close.svg"
                         alt="Dialog Close Button" onclick="closeBasketMobile()">
                 <div class="basket__title">
@@ -125,6 +125,18 @@
             <p>Cookie Preferences</p>
         </div>
     </footer>
+
+    <div class="mobile_footer display-none-mobile-footer">
+        <div class="mobile_footer__wrapper">
+            <img class="mobile_footer__wrapper_menu" src="./assets/icons/home.svg" alt="Home Menu Button">
+            <img class="mobile_footer__wrapper_menu" src="./assets/icons/person.svg" alt="Home Menu Button">
+            <img class="mobile_footer__wrapper_menu" src="./assets/icons/takeout_dining_2.svg" alt="Home Menu Button">
+            <div class="mobile_cart_wrapper">
+                <img onclick="openBasketMobile()" class="mobile_footer__wrapper_menu" id="mobile_cart_icon" src="./assets/icons/shopping_cart_mobile.svg" alt="Home Menu Button">
+                <span id="mobile_cart_counter" class="mobile_cart_counter display-none">2</span>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

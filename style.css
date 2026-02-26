@@ -4,6 +4,7 @@
     --primary-light-color: #FDEADC;
     --white: #ffff;
     --gray: #627B84;
+    --dark-gray: #363534;
 }
 
 @font-face {
@@ -163,7 +164,7 @@ section.hero {
 }
 
 .display-none {
-    display: none;
+    display: none!important;
 }
 
 
