@@ -1,0 +1,202 @@
+@media only screen and (max-width: 1080px) {
+
+    .hero {
+        padding-bottom: 10px;
+    }
+
+    .menu_icon {
+        display: none;
+    }
+
+    .hero__cover {
+        border-radius: 20px;
+        width: 93%;
+        margin: 16px auto;
+    }
+
+    .restaurant_logo {
+        width: 150px;
+        height: 150px;
+        margin-top: -85px;
+    }
+
+    .restaurant_name_wrapper {
+        flex-direction: column-reverse;
+        gap: 24px;
+
+    }
+
+    .restaurant_info__name_desc_wrapper {
+        margin-top: 50px;
+    }
+
+    .restaurant_info__name_desc_wrapper>h3 {
+        text-align: center;
+    }
+
+    .container_xl {
+        padding: 0 10px 0 10px;
+    }
+
+    .meal__title_wrapper {
+        display: flex;
+        flex-direction: column;
+        height: 65px;
+        flex-wrap: nowrap;
+        justify-content: flex-end;
+    }
+
+    .meal__title_wrapper>img {
+        width: 70px;
+    }
+
+    .meal_card_wrapper {
+        max-width: 400px;
+        margin: 15px auto;
+    }
+
+    .meal_card {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .meal_card__image_wrapper {
+        width: 100%;
+        height: 100px;
+        overflow: hidden;
+        border-radius: 20px;
+    }
+
+    .meal_info_wrapper {
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .meal_card__image_wrapper>img {
+        width: 100%;
+        background-size: cover;
+        background-position: center center;
+    }
+
+    .meal_title_desc_wrapper {
+        padding-left: 0;
+        margin: 10px 0;
+    }
+
+    .basket__title {
+        margin-top: 30px;
+    }
+
+    .basket__title>h3 {
+        font-size: 2rem;
+    }
+
+    .meal_price_basket_wrapper {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .mealList_card>h4 {
+        width: 90%;
+        line-height: 1.2;
+        margin-bottom: 10px;
+    }
+
+    .basket_wrapper {
+        position: fixed;
+        top: 0;
+        float: right;
+        height: 100vh;
+        width: 100%;
+        padding: 0;
+        overflow: hidden;
+        border-radius: 0;
+    }
+
+    #basket_active {
+        padding: 20px;
+    }
+
+    .basket_off {
+        flex-direction: column;
+        align-content: center;
+        justify-content: flex-start;
+        gap: 0;
+    }
+
+    .close_basket_mobile {
+        position: absolute;
+        right: 10px;
+        top: 10px;
+        cursor: pointer;
+    }
+
+    .footer__wrapper {
+        flex-direction: column-reverse;
+        padding-top: 0;
+    }
+
+    .display-none-mobile {
+        display: none;
+    }
+
+    .display-none-mobile-footer {
+        display: block;
+    }
+
+    .display-none-desktop {
+        display: flex;
+    }
+
+    .mobile_footer__wrapper_menu {
+        padding: 12px;
+        border-radius: 14px;
+        transition: .2s ease-in;
+    }
+
+    .mobile_footer__wrapper_menu:hover {
+        background: rgba(0, 0, 0, 0.397);
+    }
+
+    .mobile_cart_wrapper {
+        display: flex;
+        align-items: flex-start;
+    }
+
+    .mobile_cart_counter {
+        background: var(--primary-light-color);
+        border-radius: 50%;
+        height: 18px;
+        width: 18px;
+        text-align: center;
+        line-height: 1.2;
+        font-size: 12px;
+        font-weight: 600;
+        margin-left: -20px;
+        color: var(--primary-color);
+    }
+}
+
+.mobile_footer {
+    width: 100%;
+    background-color: var(--dark-gray);
+    padding-top: 15px;
+    padding-bottom: 15px;
+    position: sticky;
+    bottom: -1px;
+}
+
+.mobile_footer__wrapper {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.display-none-mobile-footer {
+    display: none;
+}

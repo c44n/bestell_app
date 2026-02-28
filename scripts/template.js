@@ -1,6 +1,5 @@
 function allMealsTemplate(meals, id) {
     let mealList = "";
-
     for (i = 0; i < meals.meals.length; i++) {
         let meal = meals.meals[i];
         let meal_category_id = id;
@@ -45,7 +44,7 @@ function mealContentTemplate(meals, meal_category_id, meal_id) {
 
                     <div class="meal_price_basket_wrapper">
                         <h3>${meals.price} €</h3>
-                        <button class="add-basket-btn" id="add_basket_btn" onclick="calculateStart(${meal_category_id},${meal_id}, 'add')">Add to basket</button>
+                        <button class="add_basket_btn" id="add_basket_btn" onclick="calculateHub(${meal_category_id},${meal_id}, 'add')">Add to basket</button>
                     </div>
                 </div>
             </div>
@@ -55,13 +54,17 @@ function mealContentTemplate(meals, meal_category_id, meal_id) {
 function mealToBasketTemplate(mealInfo, meal_id, meal_category_id) {
     return `
         <div class="mealList_card" data-meal_id="${meal_category_id}${meal_id}">
+            <img class="trash_icon trash_icon-right" id="trash_icon" src="./assets/icons/delete.svg" alt="Trash Icon" onclick="calculateHub(${meal_category_id},${meal_id}, 'delete')">
             <h4><span id="meal_count_${meal_category_id}${meal_id}">1</span> ${mealInfo.name}</h4>
 
             <div class="mealList_card__info_wrapper">
 
                 <div class="mealList_card__icon-list">
-                    <img class="trash-icon trash-icon-left" id="trash_icon" src="./assets/icons/delete.svg" alt="Trash Icon" onclick="calculateStart(${meal_category_id},${meal_id}, 'sub')">
-                    <div class="addOneBtn" onclick="calculateStart(${meal_category_id},${meal_id}, 'add')"><span class="addMeal" id="addOneMealBtn">1 +</span></div>
+                    <div class="addSubBtnWrapper">
+                        <span class="addSubOneBtn addMeal" id="addOneMealBtn" onclick="calculateHub(${meal_category_id},${meal_id}, 'sub')">-</span> 
+                        1 
+                        <span class="addSubOneBtn addMeal" id="addOneMealBtn" onclick="calculateHub(${meal_category_id},${meal_id}, 'add')">+</span>
+                    </div>
                 </div>
 
                 <div class="mealList_card__meal_price">

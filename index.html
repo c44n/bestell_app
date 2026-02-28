@@ -11,10 +11,11 @@
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="./styles/calculation.css">
     <link rel="stylesheet" href="./styles/meal.css">
+    <link rel="stylesheet" href="./styles/mobile.css">
 
     <script src="./scripts/db.js"></script>
-    <script src="./scripts/template.js"></script>
     <script src="./script.js" defer></script>
+    <script src="./scripts/template.js"></script>
 </head>
 
 <body onload="init()">
@@ -53,7 +54,7 @@
 
         <section class="meal">
             <div class="basket_wrapper display-none-mobile" id="basket_wrapper">
-                <img class="close_basket_mobile" id="closeBasketMobileBtn" tabindex="0" src="./assets/icons/close.svg"
+                <img class="close_basket_mobile display-none-desktop" id="closeBasketMobileBtn" tabindex="0" src="./assets/icons/close.svg"
                         alt="Dialog Close Button" onclick="closeBasketMobile()">
                 <div class="basket__title">
                     <h3>Your Basket</h3>
@@ -66,7 +67,7 @@
                 </div>
 
                 <div id="basket_active" class="display-none">
-                    <div class="basket__mealList" id="basket__mealList"></div>
+                    <div class="basket__mealList display-none-mobile" id="basket__mealList"></div>
 
                     <div class="basket__calculate">
                         <div id="subtotal" class="calc_wrapper">
@@ -88,7 +89,7 @@
                     </div>
 
                     <div class="buy_btn_wrapper">
-                        <button onclick="openDialog()" class="buy_btn">Buy Now (<span id="buy_btn_num"></span> €)</button>
+                        <button onclick="openDialog()" id="buy_btn" class="buy_btn">Buy Now (<span id="buy_btn_num"></span> €)</button>
                     </div>
                 </div>
             </div>

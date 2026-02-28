@@ -4,17 +4,28 @@ let newCount;
 let finalPrice;
 let deliverPrice = parseFloat(4.99);
 let deliverFinalPrice;
-let basketCounter = 1;
+let basketCounter = 0;
+let closeTimer;
 
-let buyBtnNumRef = document.getElementById('buy_btn_num');
+const buyBtnNumRef = document.getElementById('buy_btn_num');
 const dialogRef = document.getElementById('delivereDialog');
+const mobileBasketIconRef = document.getElementById('mobile_cart_icon');
+const basketMealListRef = document.getElementById('basket__mealList');
+const basket_activeRef = document.getElementById('basket_active');
+const basket_offRef = document.getElementById('basket_off');
+const basket_wrapperRef = document.getElementById('basket_wrapper');
+const mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
+const mealsSectionRef = document.getElementById('allMeals');
+const subTotalElementRef = document.getElementById('subtotal_num');
+const totalNumElementRef = document.getElementById('total_num');
+const buyBtnRef = document.getElementById('buy_btn');
+const closeBasketMobileRef = document.getElementById('closeBasketMobileBtn');
 
 function init() {
     loadMeals();
 }
 
 function loadMeals() {
-    let mealsSectionRef = document.getElementById('allMeals');
     for (let i = 0; i < allMeals.length; i++) {
         id = i;
         mealsSectionRef.innerHTML += allMealsTemplate(allMeals[i], id);
@@ -22,19 +33,70 @@ function loadMeals() {
 }
 
 function addMealToBasket(mealObj) {
-    // Prüfung ob Essen vorhanden + Auswählen des richtigen Elements vom Essen
-    if (mealObj["basketWrapperRef"].querySelector('[data-meal_id="' + mealObj["meal_category_id"] + mealObj["meal_id"] + '"]')) {
+    if (mealObj["basketMealListRef"].querySelector('[data-meal_id="' + mealObj["meal_category_id"] + mealObj["meal_id"] + '"]')) {
         // Warenkorbanzahl aktualisieren
-        let mealBasketCount = parseInt(mealObj["mealBasketCountRef"].innerText); //parseInt wandelt Textinhalt in Ganzzahl um
-        // Anzahl wird erhöhrt
+        let mealBasketCount = parseInt(mealObj.mealBasketCountRef.innerText); //parseInt wandelt Textinhalt in Ganzzahl um
         newCount = mealBasketCount + 1;
         //  Essenspreis mit aktueller Essen-Gesamtsumme addieren + Aktualisierten Preis im Element einfügen
-        finalPrice = (mealObj["mealPrice"] + mealObj["subTotal"]).toFixed(2);
-        deliverFinalPrice = (mealObj["mealPrice"] + mealObj["subTotal"] + mealObj["deliverPrice"]).toFixed(2);
+        finalPrice = (mealObj.mealPrice + mealObj.subTotal).toFixed(2);
+        deliverFinalPrice = (mealObj.mealPrice + mealObj.subTotal + mealObj.deliverPrice).toFixed(2);
         basketCounter++;
     }
-    let newObj = { newCount, finalPrice, deliverFinalPrice, basketCounter }
-    return newObj;
+    mealObj.mealBasketCountRef.innerHTML = newCount;
+    mealObj.subTotalElementRef.innerHTML = finalPrice;
+    mealObj.totalNumElementRef.innerHTML = deliverFinalPrice;
+    mealObj.buyBtnNumRef.innerHTML = deliverFinalPrice;
+    mealObj.mobileBasketIconCounter.innerHTML = basketCounter;
+}
+
+function addMealFirstToBasket(mealObj) {
+    // In Wrapper Element das Essen einfügen
+    mealObj.basketMealListRef.classList.remove('display-none-mobile');
+    mealObj.basketMealListRef.innerHTML += mealToBasketTemplate(mealObj.mealInfo, mealObj.meal_id, mealObj.meal_category_id);
+    // Aktualisierten Preis im Element einfügen
+    mealObj.subTotalElementRef.innerHTML = (mealObj.subTotal + mealObj.mealPrice).toFixed(2);
+    mealObj.totalNumElementRef.innerHTML = (mealObj.subTotal + mealObj.mealPrice + mealObj.deliverPrice).toFixed(2);
+    mealObj.buyBtnNumRef.innerHTML = (mealObj.subTotal + mealObj.mealPrice + mealObj.deliverPrice).toFixed(2);
+    basketCounter++;
+    mealObj.mobileBasketIconCounter.innerHTML = basketCounter;
+
+    mealObj.basket_activeRef.classList.remove('display-none');
+    mealObj.basket_offRef.classList.add('display-none');
+    mealObj.mobileBasketIconCounter.classList.remove('display-none');
+}
+
+function calculateHub(meal_category_id, meal_id, calcType) {
+    // Essen Infos holen
+    let mealInfo = meals[meal_category_id].meals[meal_id];
+    let mealPrice = parseFloat(mealInfo.price);
+    let subTotal = parseFloat(subTotalElementRef.innerHTML);
+    // Anzahl Meal
+    let mealBasketCountRef = document.getElementById('meal_count_' + meal_category_id + meal_id);
+    let mealDataRef = basketMealListRef.querySelector('[data-meal_id="' + meal_category_id + meal_id + '"]');
+
+    let addArr = { basket_activeRef, basket_offRef, mobileBasketIconCounter, buyBtnNumRef, totalNumElementRef, deliverPrice, basketMealListRef, mealBasketCountRef, mealInfo, mealPrice, subTotalElementRef, subTotal, meal_id, meal_category_id };
+    let subArr = { mealDataRef, totalNumElementRef, deliverPrice, mealBasketCountRef, subTotalElementRef, subTotal, mealPrice }
+    let deleteArr = { mealBasketCountRef, mealPrice, mealDataRef, subTotal, subTotalElementRef, totalNumElementRef };
+    calculateStart(addArr, subArr, deleteArr, calcType, meal_category_id, meal_id);
+}
+
+function calculateStart(addArr, subArr, deleteArr, calcType, meal_category_id, meal_id) {
+    if (calcType == "add") {
+        if (basketMealListRef.querySelector('[data-meal_id="' + meal_category_id + meal_id + '"]')) {
+            addMealToBasket(addArr);
+        } else {
+            // Wenn ausgewähltes Essen nicht vorhanden ist
+            addMealFirstToBasket(addArr);
+        }
+    }
+
+    if (calcType == "sub") {
+        deleteMealFromBasket(subArr);
+    }
+
+    if (calcType == "delete") {
+        deleteMealComplete(deleteArr);
+    }
 }
 
 function deleteMealFromBasket(mealObj) {
@@ -45,116 +107,62 @@ function deleteMealFromBasket(mealObj) {
     finalPrice = parseFloat(mealObj["subTotal"] - mealObj["mealPrice"]).toFixed(2); //toFixed(2), um Zahl mit zwei Nachkommastellen zu formatieren
     deliverFinalPrice = (mealObj["subTotal"] - mealObj["mealPrice"] + mealObj["deliverPrice"]).toFixed(2);
     basketCounter--;
-    newObj = { newCount, mealBasketCount, finalPrice, deliverFinalPrice, basketCounter }
-    return newObj;
+
+    deleteMeal(mealObj, mealBasketCount, newCount);
 }
 
-let mobileBasketIconRef = document.getElementById('mobile_cart_icon');
-
-function calculateStart(meal_category_id, meal_id, calcType) {
-    let basketWrapperRef = document.getElementById('basket__mealList');
-    let basket_activeRef = document.getElementById('basket_active');
-    let basket_offRef = document.getElementById('basket_off');
-    let trashIconRef = document.getElementById('trash_icon');
-    let addMealBtn = document.getElementById('addOneMealBtn');
-    let mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
-
-    // Essen Infos holen
-    let mealInfo = meals[meal_category_id].meals[meal_id];
-    // Preis holen und umwandeln von Text in Kommazahl
-    let mealPrice = parseFloat(mealInfo.price);
-
-    // Subtotal Element
-    let subTotalElementRef = document.getElementById('subtotal_num');
-    let totalNumElementRef = document.getElementById('total_num');
-    // Subtotal-Nummer-Element mit Summe holen
-    let subTotal = parseFloat(subTotalElementRef.innerHTML);
-    // Für Sub 
-    let mealBasketCountRef = document.getElementById('meal_count_' + meal_category_id + meal_id);
-    let mealDataRef = basketWrapperRef.querySelector('[data-meal_id="' + meal_category_id + meal_id + '"]');
-
-    let addArr = { deliverPrice, basketWrapperRef, mealBasketCountRef, mealInfo, mealPrice, subTotalElementRef, subTotal, meal_id, meal_category_id };
-    let subArr = { deliverPrice, mealDataRef, mealBasketCountRef, subTotalElementRef, subTotal, mealPrice }
-
-
-
-    if (calcType == "add") {
-        if (basketWrapperRef.querySelector('[data-meal_id="' + meal_category_id + meal_id + '"]')) {
-            let newObj = addMealToBasket(addArr);
-            mealBasketCountRef.innerHTML = newObj.newCount;
-            subTotalElementRef.innerHTML = newObj.finalPrice;
-            totalNumElementRef.innerHTML = newObj.deliverFinalPrice;
-            buyBtnNumRef.innerHTML = newObj.deliverFinalPrice;
-            mobileBasketIconCounter.innerHTML = newObj.basketCounter;
-
-            trashIconRef.classList.add('trash-icon-right');
-            addMealBtn.innerHTML = "- 1 +";
-        } else {
-            // Wenn ausgewähltes Essen nicht vorhanden ist
-            // In Wrapper Element das Essen einfügen
-            basketWrapperRef.innerHTML += mealToBasketTemplate(mealInfo, meal_id, meal_category_id);
-            // Aktualisierten Preis im Element einfügen
-            subTotalElementRef.innerHTML = (subTotal + mealPrice).toFixed(2);
-            totalNumElementRef.innerHTML = (subTotal + mealPrice + deliverPrice).toFixed(2);
-            buyBtnNumRef.innerHTML = (subTotal + mealPrice + deliverPrice).toFixed(2);
-            mobileBasketIconCounter.innerHTML = basketCounter;
-
-            basket_activeRef.classList.remove('display-none');
-            basket_offRef.classList.add('display-none');
-            mobileBasketIconRef.style.color = 'var(--primary-color)';
-            mobileBasketIconCounter.classList.remove('display-none');
-        }
-    }
-
-    if (calcType == "sub") {
-        let newObj = deleteMealFromBasket(subArr);
-        if (newObj.mealBasketCount > 1) {
-            mealBasketCountRef.innerHTML = newObj.newCount;
-            subTotalElementRef.innerHTML = newObj.finalPrice;
-            totalNumElementRef.innerHTML = newObj.deliverFinalPrice;
-            buyBtnNumRef.innerHTML = newObj.deliverFinalPrice;
-            mobileBasketIconCounter.innerHTML = newObj.basketCounter;
-        } else {
-            mealDataRef.remove();
-            subTotalElementRef.innerHTML = newObj.finalPrice;
-            mobileBasketIconCounter.innerHTML = 1;
-            mobileBasketIconCounter.classList.add('display-none');
-
-            if (subTotalElementRef.innerHTML == "0.00") {
-                basket_activeRef.classList.add('display-none');
-                basket_offRef.classList.remove('display-none');
-            }
-        }
+function deleteMeal(mealObj, mealBasketCount, newCount) {
+    if (mealBasketCount > 1) {
+        mealObj.mealBasketCountRef.innerHTML = newCount;
+        mealObj.subTotalElementRef.innerHTML = finalPrice;
+        mealObj.totalNumElementRef.innerHTML = deliverFinalPrice;
+        buyBtnNumRef.innerHTML = deliverFinalPrice;
+        mobileBasketIconCounter.innerHTML = basketCounter;
+    } else {
+        deleteMealComplete(mealObj);
     }
 }
 
-let closeTimer;
-let basketWrapperRef = document.getElementById('basket_wrapper');
+function deleteMealComplete(mealObj, mealBasketCount) {
+    mealBasketCount = parseInt(mealObj["mealBasketCountRef"].innerText);
+    let nowSum = mealObj["mealPrice"] * mealBasketCount;
+    let diffSum = mealObj["subTotal"] - nowSum;
+
+    mealObj["mealDataRef"].remove();
+    mealObj["subTotalElementRef"].innerHTML = diffSum.toFixed(2);
+
+    if (diffSum > 0) {
+        mealObj["totalNumElementRef"].innerHTML = parseFloat(diffSum + deliverPrice).toFixed(2);
+    } else {
+        mealObj["totalNumElementRef"].innerHTML = 0.00.toFixed(2);
+        buyBtnNumRef.innerHTML = 0.00.toFixed(2);
+    }
+}
 
 function openDialog() {
-    let mobileBasketIconCounter = document.getElementById('mobile_cart_counter');
     dialogRef.showModal();
-    basketWrapperRef.classList.add('display-none');
+    basketMealListRef.classList.add('display-none');
 
-    mobileBasketIconCounter.innerHTML = 1;
-    mobileBasketIconCounter.classList.add('display-none');
+    mobileBasketIconCounter.innerHTML = 0;
+    subTotalElementRef.innerHTML = 0.00;
+    totalNumElementRef.innerHTML = 0.00;
+    buyBtnNumRef.innerHTML = 0.00;
+    mobileBasketIconCounter.classList.add('display-none-mobile');
+    basket_wrapperRef.classList.add('display-none');
 
     closeTimer = setTimeout(() => {
         dialogRef.close();
     }, 15000);
-
 }
 
 function closeDialog() {
     dialogRef.close();
 }
 
-let closeBasketMobileRef = document.getElementById('closeBasketMobileBtn');
-
 function closeBasketMobile() {
-    basketWrapperRef.classList.add('display-none-mobile');
+    basket_wrapperRef.classList.add('display-none-mobile');
 }
 
 function openBasketMobile() {
-    basketWrapperRef.classList.remove('display-none-mobile');
+    basket_wrapperRef.classList.remove('display-none-mobile');
 }
