@@ -127,15 +127,23 @@ function deleteMealComplete(mealObj, mealBasketCount) {
     mealBasketCount = parseInt(mealObj["mealBasketCountRef"].innerText);
     let nowSum = mealObj["mealPrice"] * mealBasketCount;
     let diffSum = mealObj["subTotal"] - nowSum;
-
     mealObj["mealDataRef"].remove();
     mealObj["subTotalElementRef"].innerHTML = diffSum.toFixed(2);
-
     if (diffSum > 0) {
         mealObj["totalNumElementRef"].innerHTML = parseFloat(diffSum + deliverPrice).toFixed(2);
     } else {
         mealObj["totalNumElementRef"].innerHTML = 0.00.toFixed(2);
         buyBtnNumRef.innerHTML = 0.00.toFixed(2);
+        basket_activeRef.classList.add('display-none');
+        basket_offRef.classList.remove('display-none');
+        updateBasketIconCounter("null");
+    }
+}
+
+function updateBasketIconCounter(type) {
+    if (type == "null") {
+        basketCounter = 0;
+        mobileBasketIconCounter.classList.add('display-none');
     }
 }
 
@@ -143,7 +151,7 @@ function openDialog() {
     dialogRef.showModal();
     basketMealListRef.classList.add('display-none');
 
-    mobileBasketIconCounter.innerHTML = 0;
+    updateBasketIconCounter("null");
     subTotalElementRef.innerHTML = 0.00;
     totalNumElementRef.innerHTML = 0.00;
     buyBtnNumRef.innerHTML = 0.00;
