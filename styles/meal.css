@@ -30,7 +30,7 @@
 }
 
 .meal_info_wrapper {
-    width: auto;
+    width: 65%;
     display: flex;
     justify-content: space-between;
 }
